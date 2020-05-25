@@ -47,6 +47,7 @@ app.on('ready', () => {
   // menu
   const mainMenu = Menu.buildFromTemplate(menu)
   Menu.setApplicationMenu(mainMenu)
+
 })
 
 // set configuration to file
@@ -89,5 +90,13 @@ app.on('activate', () => {
     createMainWindow()
   }
 })
+
+// prevent shutdown error
+app.on('before-quit', (e) => {
+  if (isMac) {
+    app.exit();
+  }
+});
+
 
 app.allowRendererProcessReuse = true
